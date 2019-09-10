@@ -4,9 +4,17 @@
         <servlet-name>AfficherPdf</servlet-name>
         <servlet-class>fr.epsi.projet.api.pdf.handler.AfficherPdf</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MergePdf</servlet-name>
+        <servlet-class>fr.epsi.projet.api.pdf.handler.MergePdf</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AfficherPdf</servlet-name>
         <url-pattern>/AfficherPdf</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MergePdf</servlet-name>
+        <url-pattern>/MergePdf</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
