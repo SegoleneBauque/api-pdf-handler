@@ -13,24 +13,15 @@ import com.itextpdf.kernel.pdf.PdfReader;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Image;
-import com.itextpdf.styledxmlparser.css.media.MediaType;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.UriInfo;
 
 /**
@@ -74,7 +65,7 @@ public class AfficherPdf {
             return Response
                     .status(Response.Status.OK)
                     .type("application/pdf")
-                    .header("Content-Disposition", "filename=" + fileName)
+                    .header("Access-Control-Allow-Origin", "*")
                     .entity(baos.toByteArray())
                     .build();
         } catch (IOException e) {
@@ -106,7 +97,7 @@ public class AfficherPdf {
             return Response
                     .status(Response.Status.OK)
                     .type("application/pdf")
-                    .header("Content-Disposition", "filename=" + fileName)
+                    .header("Access-Control-Allow-Origin", "*")
                     .entity(baos.toByteArray())
                     .build();
         } catch (IOException e) {
@@ -137,7 +128,7 @@ public class AfficherPdf {
         return Response
                 .status(Response.Status.OK)
                 .type("application/pdf")
-                .header("Content-Disposition", "filename=" + fileName)
+                .header("Access-Control-Allow-Origin", "*")
                 .entity(baos.toByteArray())
                 .build();
     }
@@ -169,7 +160,7 @@ public class AfficherPdf {
         return Response
                 .status(Response.Status.OK)
                 .type("application/pdf")
-                .header("Content-Disposition", "filename=" + fileName)
+                .header("Access-Control-Allow-Origin", "*")
                 .entity(baos.toByteArray())
                 .build();
     }
