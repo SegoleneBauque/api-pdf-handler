@@ -16,13 +16,22 @@ import com.itextpdf.layout.element.Image;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.glassfish.jersey.media.multipart.FormDataParam;
+
+
 
 /**
  *
@@ -164,4 +173,19 @@ public class AfficherPdf {
                 .entity(baos.toByteArray())
                 .build();
     }
+    
+   @POST
+   @Path("/upload") // http://localhost:8080/api-pdf-handler/resources/pdf/upload?file=resultat.pdf
+   @Consumes(MediaType.MULTIPART_FORM_DATA)
+   public Response uploadFile(@FormDataParam("file") InputStream uploadedInputStream, @FormDataParam("file") FormDataContentDisposition fileDetail) {
+       String fileLocation = "C:\\test\\pdf\\" + fileDetail.getFileName();
+       //saving file
+       try {
+           Files.copy(uploadedInputStream, new File(fileLocation).toPath());
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+       String output = "File successfully uploaded to : " + fileLocation;
+       return Response.status(200).entity(output).build();
+   }
 }
